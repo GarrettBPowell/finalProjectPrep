@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -23,7 +23,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:text="@string/addEvent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
@@ -88,7 +87,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/removeEvent"
         app:layout_constraintStart_toEndOf="@+id/addEvent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
@@ -98,7 +96,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="@string/loopkUpDay"
         app:layout_constraintStart_toEndOf="@+id/removeEvent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
@@ -111,10 +108,10 @@
         android:layout_marginTop="8dp"
         android:autofillHints="@string/endTime"
         android:ems="10"
+        android:hint="@string/endTime"
         android:inputType="time"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/editTextTime"
-        app:layout_constraintTop_toBottomOf="@+id/removeEvent"
-        tools:hint="@string/endTime" />
+        app:layout_constraintTop_toBottomOf="@+id/removeEvent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
