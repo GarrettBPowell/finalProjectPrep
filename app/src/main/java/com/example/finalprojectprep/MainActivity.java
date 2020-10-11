@@ -1,18 +1,24 @@
 package com.example.finalprojectprep;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.Debug;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import com.example.finalprojectprep.calData;
 
@@ -23,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CalendarView calendarView = findViewById(R.id.calendarView);
+        final CalendarView calendarView = findViewById(R.id.calendarView);
+
+        //set up array adapter for look up date
+        final ArrayList<String> displayDate = new ArrayList<>();
+        final ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, displayDate);
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -35,12 +45,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        final Context context = this;
         final EditText time = findViewById(R.id.editTextTime);
         final EditText time2 = findViewById(R.id.editTextTime2);
         final EditText date = findViewById(R.id.editTextDate);
         final EditText content = findViewById(R.id.editTextTextMultiLine);
 
+        final ListView listView = (ListView)findViewById(R.id.listView);
+        final RelativeLayout relativeLayout = findViewById(R.id.relative);
 
         final Button addEvent = findViewById(R.id.addEvent);
         final Button backToNormalView = findViewById(R.id.backToNormalView);
@@ -113,11 +125,31 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(backToNormalView.getText().equals("Look Up Day")) {
                                    //stuff
+                    if(date.getText().toString().equals(""))
+                        Toast.makeText(getApplicationContext(),"Please Enter a Date", Toast.LENGTH_LONG).show();
+                    else {
+                        String[] breakDate = date.getText().toString().split("/");
+                        String key = breakDate[0] + breakDate[1] + breakDate[2];
+                        if(calData.DAY.containsKey(key))
+                        {
 
-                    addEvent.setVisibility(View.VISIBLE);
+
+                            for (calData c: calData.DAY.get(key)) {
+                                displayDate.add(c.getTimeStart() + " - " + c.getTimeEnd() + " " + c.getContent());
+                            }
+                            calendarView.setVisibility(View.INVISIBLE);
+                            listView.setAdapter(arrayAdapter);
+
+                            relativeLayout.setVisibility(View.VISIBLE);
+                            listView.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+
+                   /* addEvent.setVisibility(View.VISIBLE);
                     backToNormalView.setVisibility((View.INVISIBLE));
                     removeEvent.setVisibility(View.VISIBLE);
-                    lookUpDay.setVisibility(View.VISIBLE);
+                    lookUpDay.setVisibility(View.VISIBLE);*/
                 }
                 else {
                     addEvent.setVisibility(View.VISIBLE);
@@ -134,8 +166,6 @@ public class MainActivity extends AppCompatActivity {
         //remove event button listener
         removeEvent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-
                 addEvent.setVisibility(View.INVISIBLE);
                 removeEvent.setVisibility(View.INVISIBLE);
                 lookUpDay.setVisibility(View.INVISIBLE);
@@ -149,7 +179,8 @@ public class MainActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-
+                listView.setVisibility(View.INVISIBLE);
+                relativeLayout.setVisibility(View.INVISIBLE);
                 addEvent.setVisibility(View.VISIBLE);
                 removeEvent.setVisibility(View.VISIBLE);
                 lookUpDay.setVisibility(View.VISIBLE);
@@ -158,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 time2.setVisibility(View.INVISIBLE);
                 date.setVisibility(View.INVISIBLE);
                 content.setVisibility(View.INVISIBLE);
+                back.setVisibility(View.INVISIBLE);
             };
         });
 
@@ -166,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 date.setVisibility(View.VISIBLE);
+                calendarView.setVisibility(View.VISIBLE);
 
                 addEvent.setVisibility(View.INVISIBLE);
                 removeEvent.setVisibility(View.INVISIBLE);
