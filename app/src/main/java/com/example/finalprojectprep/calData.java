@@ -1,5 +1,8 @@
 package com.example.finalprojectprep;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class calData
 {
     private String year;
@@ -9,6 +12,9 @@ public class calData
     private String timeOfDay;
     private String timeEnd;
     private String content;
+
+    public static final HashMap<String, ArrayList<calData>> DAY = new HashMap();
+    public static final ArrayList<calData> EVENTS = new ArrayList<>();
 
     calData(String m, String d, String y, String ts, String te, String con)
     {

@@ -9,5 +9,9 @@
     <string name="addEvent">Add Event</string>
     <string name="createEvent">Create Event</string>
     <string name="removeEvent">Remove Event</string>
-    <string name="loopkUpDay">Loop Up Day</string>
+    <string name="loopkUpDay">Look Up Day</string>
+    <string name="title_displayday_list">Items</string>
+    <string name="title_displayday_detail">displayDay Detail</string>
+
+    <string name="back">Back</string>
 </resources>

@@ -14,6 +14,7 @@ import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.example.finalprojectprep.calData;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final HashMap<String, ArrayList<calData>> DAY = new HashMap();
-        final ArrayList<calData> EVENTS = new ArrayList<>();
+
 
         final EditText time = findViewById(R.id.editTextTime);
         final EditText time2 = findViewById(R.id.editTextTime2);
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         final Button backToNormalView = findViewById(R.id.backToNormalView);
         final Button removeEvent = findViewById(R.id.removeEvent);
         final Button lookUpDay = findViewById(R.id.lookUpDay);
+        final Button back = findViewById(R.id.back);
 
         //add event button listener
         addEvent.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 backToNormalView.setVisibility((View.VISIBLE));
                 removeEvent.setVisibility(View.INVISIBLE);
                 lookUpDay.setVisibility(View.INVISIBLE);
+                back.setVisibility(View.VISIBLE);
 
 
             };
         });
 
-        //back to normal event button listener
+        //back to normal event button listener handles adding events, looking up events, etc, one button many functions
         backToNormalView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(backToNormalView.getText().equals("Create Event")) {
@@ -80,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
                        calData newEvent = new calData((breakDate[0]), breakDate[1], breakDate[2], time.getText().toString(), time2.getText().toString(), content.getText().toString());
 
                        //events contains the object which allows multiple events to exist on the same day at the same time but have differing content
-                       EVENTS.add(newEvent);
+                       calData.EVENTS.add(newEvent);
                        //day contains the event map so it should contain different instances of EVENT with different day keys so the data for certain days can be looked up
-                       DAY.put(newEvent.getMonth() + newEvent.getDay() + newEvent.getYear(), EVENTS);
+                       calData.DAY.put(newEvent.getMonth() + newEvent.getDay() + newEvent.getYear(), calData.EVENTS);
 
 
                        time.setVisibility(View.INVISIBLE);
@@ -90,13 +92,18 @@ public class MainActivity extends AppCompatActivity {
                        date.setVisibility(View.INVISIBLE);
                        content.setVisibility(View.INVISIBLE);
 
+                       time.setText("");
+                       time2.setText("");
+                       date.setText("");
+                       content.setText("");
+
                        addEvent.setVisibility(View.VISIBLE);
                        backToNormalView.setVisibility((View.INVISIBLE));
                        removeEvent.setVisibility(View.VISIBLE);
                        lookUpDay.setVisibility(View.VISIBLE);
                    }
                 }
-                else if(backToNormalView.getText().equals("")) {
+                else if(backToNormalView.getText().equals("Remove Event")) {
                     //stuff
 
                     addEvent.setVisibility(View.VISIBLE);
@@ -104,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     removeEvent.setVisibility(View.VISIBLE);
                     lookUpDay.setVisibility(View.VISIBLE);
                 }
-                else if(backToNormalView.getText().equals("i")) {
+                else if(backToNormalView.getText().equals("Look Up Day")) {
                                    //stuff
 
                     addEvent.setVisibility(View.VISIBLE);
@@ -127,11 +134,30 @@ public class MainActivity extends AppCompatActivity {
         //remove event button listener
         removeEvent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+
                 addEvent.setVisibility(View.INVISIBLE);
                 removeEvent.setVisibility(View.INVISIBLE);
                 lookUpDay.setVisibility(View.INVISIBLE);
                 backToNormalView.setText(R.string.removeEvent);
                 backToNormalView.setVisibility((View.VISIBLE));
+                back.setVisibility(View.VISIBLE);
+            };
+        });
+
+        //goes back if someone does not want to look up date, add event, etc.
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+
+                addEvent.setVisibility(View.VISIBLE);
+                removeEvent.setVisibility(View.VISIBLE);
+                lookUpDay.setVisibility(View.VISIBLE);
+                backToNormalView.setVisibility(View.INVISIBLE);
+                time.setVisibility(View.INVISIBLE);
+                time2.setVisibility(View.INVISIBLE);
+                date.setVisibility(View.INVISIBLE);
+                content.setVisibility(View.INVISIBLE);
             };
         });
 
@@ -139,11 +165,14 @@ public class MainActivity extends AppCompatActivity {
         lookUpDay.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                date.setVisibility(View.VISIBLE);
+
                 addEvent.setVisibility(View.INVISIBLE);
                 removeEvent.setVisibility(View.INVISIBLE);
                 lookUpDay.setVisibility(View.INVISIBLE);
                 backToNormalView.setText(R.string.loopkUpDay);
                 backToNormalView.setVisibility(View.VISIBLE);
+                back.setVisibility(View.VISIBLE);
             };
         });
     }
