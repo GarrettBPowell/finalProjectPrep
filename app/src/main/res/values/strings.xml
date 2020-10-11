@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">finalProjectPrep</string>
-    <string name="addEvent">Add Event</string>
+
     <string name="startTime">Start Time</string>
+    <string name="endTime">End Time</string>
     <string name="startDate">Start Date</string>
     <string name="content">Event Description</string>
+
+    <string name="addEvent">Add Event</string>
+    <string name="createEvent">Create Event</string>
+    <string name="removeEvent">Remove Event</string>
+    <string name="loopkUpDay">Loop Up Day</string>
 </resources>
