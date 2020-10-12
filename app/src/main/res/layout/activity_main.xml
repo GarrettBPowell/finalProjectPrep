@@ -42,6 +42,20 @@
         app:layout_constraintTop_toBottomOf="@+id/addEvent" />
 
     <EditText
+        android:id="@+id/editTextTime2"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="@string/endTime"
+        android:ems="10"
+        android:hint="@string/endTime"
+        android:inputType="time"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/spinner"
+        app:layout_constraintTop_toBottomOf="@+id/lookUpDay" />
+
+    <EditText
         android:id="@+id/editTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,43 +109,32 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         android:text="@string/back"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/editTextTextMultiLine"
         app:layout_constraintTop_toBottomOf="@+id/backToNormalView" />
 
-    <RelativeLayout
-        android:id="@+id/relative"
-        android:layout_width="340dp"
-        android:layout_height="500dp"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible" />
-
-    </RelativeLayout>
-
-    <EditText
-        android:id="@+id/editTextTime2"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints="@string/endTime"
-        android:ems="10"
-        android:hint="@string/endTime"
-        android:inputType="time"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:entries="@array/amPm"
+        android:minWidth="50dp"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/editTextTime"
+        app:layout_constraintTop_toBottomOf="@+id/lookUpDay" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:entries="@array/amPm"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/editTextTime2"
         app:layout_constraintTop_toBottomOf="@+id/lookUpDay" />
 
     <EditText
@@ -157,5 +160,23 @@
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/removeNumber"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="340dp"
+        android:layout_height="500dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

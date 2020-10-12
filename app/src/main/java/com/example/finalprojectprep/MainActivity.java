@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         final EditText content = findViewById(R.id.editTextTextMultiLine);
         final EditText removeNum = findViewById(R.id.removeNumber);
 
+        final Spinner spinner1 = findViewById(R.id.spinner);
+        final Spinner spinner2 = findViewById(R.id.spinner2);
         final ListView listView = (ListView)findViewById(R.id.listView);
         final RelativeLayout relativeLayout = findViewById(R.id.relative);
 
@@ -72,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 content.setVisibility(View.VISIBLE);
                 back.setVisibility(View.VISIBLE);
                 multiPurpose.setVisibility((View.VISIBLE));
+                spinner1.setVisibility(View.VISIBLE);
+                spinner2.setVisibility(View.VISIBLE);
 
                 multiPurpose.setText("Create Event");
 
@@ -97,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
                        //break date up
                        String[] breakDate = date.getText().toString().split("/");
                        //create new Object
-                       calData newEvent = new calData((breakDate[0]), breakDate[1], breakDate[2], time.getText().toString(), time2.getText().toString(), content.getText().toString());
+                       calData newEvent = new calData((breakDate[0]), breakDate[1], breakDate[2], time.getText().toString() + spinner1.getSelectedItem().toString(),
+                               time2.getText().toString() + spinner2.getSelectedItem().toString(), content.getText().toString());
 
                        if(calData.DAY.containsKey(breakDate[0] + breakDate[1] + breakDate[2]))
                            EVENTS = calData.DAY.get(breakDate[0] + breakDate[1] + breakDate[2]);
@@ -114,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
                        content.setVisibility(View.INVISIBLE);
                        multiPurpose.setVisibility((View.INVISIBLE));
                        back.setVisibility(View.INVISIBLE);
+                       spinner1.setVisibility(View.INVISIBLE);
+                       spinner2.setVisibility(View.INVISIBLE);
 
                        time.setText("");
                        time2.setText("");
@@ -185,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
                 back.setVisibility(View.INVISIBLE);
                 remove.setVisibility(View.INVISIBLE);
                 removeNum.setVisibility(View.INVISIBLE);
+                spinner1.setVisibility(View.INVISIBLE);
+                spinner2.setVisibility(View.INVISIBLE);
                 removeNum.setText("");
                 date.setText("");
             };
