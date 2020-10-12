@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         //add event button listener
         addEvent.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 time.setVisibility(View.VISIBLE);
                 time2.setVisibility(View.VISIBLE);
                 date.setVisibility(View.VISIBLE);
@@ -81,9 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
                 addEvent.setVisibility(View.INVISIBLE);
                 lookUpDay.setVisibility(View.INVISIBLE);
-
-
-
             };
         });
 
@@ -96,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                        Toast.makeText(getApplicationContext(),"Please Fill All Fields", Toast.LENGTH_LONG).show();
                    }
+
                    else {
                        ArrayList<calData> EVENTS = new ArrayList<>();
                        //break date up
@@ -104,14 +101,15 @@ public class MainActivity extends AppCompatActivity {
                        calData newEvent = new calData((breakDate[0]), breakDate[1], breakDate[2], time.getText().toString() + spinner1.getSelectedItem().toString(),
                                time2.getText().toString() + spinner2.getSelectedItem().toString(), content.getText().toString());
 
+                       //if map contains date set the array equal to what is located at that key in map
                        if(calData.DAY.containsKey(breakDate[0] + breakDate[1] + breakDate[2]))
                            EVENTS = calData.DAY.get(breakDate[0] + breakDate[1] + breakDate[2]);
+
                        //events contains the object which allows multiple events to exist on the same day at the same time but have differing content
                        EVENTS.add(newEvent);
+
                        //day contains the event map so it should contain different instances of EVENT with different day keys so the data for certain days can be looked up
                        calData.DAY.put(newEvent.getMonth() + newEvent.getDay() + newEvent.getYear(), EVENTS);
-
-
 
                        time.setVisibility(View.INVISIBLE);
                        time2.setVisibility(View.INVISIBLE);
@@ -128,21 +126,22 @@ public class MainActivity extends AppCompatActivity {
                        content.setText("");
 
                        addEvent.setVisibility(View.VISIBLE);
-
                        lookUpDay.setVisibility(View.VISIBLE);
                    }
                 }
 
-
                 //action button to look up day
                 else if(multiPurpose.getText().equals("Look Up Day")) {
+
                     //check that date field is set
                     if(date.getText().toString().equals(""))
                         Toast.makeText(getApplicationContext(),"Please Enter a Date", Toast.LENGTH_LONG).show();
+
                     else {
                         String[] breakDate = date.getText().toString().split("/");
                         String key = breakDate[0] + breakDate[1] + breakDate[2];
 
+                        //if key is in map
                         if(calData.DAY.containsKey(key))
                         {
                             displayDate.clear();
@@ -164,21 +163,18 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 }
+
                 else {
                     addEvent.setVisibility(View.VISIBLE);
                     multiPurpose.setVisibility((View.INVISIBLE));
-
                     lookUpDay.setVisibility(View.VISIBLE);
                 }
             };
         });
 
-        //remove event button listener
-
         //goes back if someone does not want to look up date, add event, etc.
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 calendarView.setVisibility(View.VISIBLE);
                 listView.setVisibility(View.INVISIBLE);
                 relativeLayout.setVisibility(View.INVISIBLE);
@@ -199,25 +195,35 @@ public class MainActivity extends AppCompatActivity {
             };
         });
 
+        //button for removing events on certain dates
         remove.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(removeNum.getVisibility() == View.INVISIBLE)
-                {
+                //if the removeNum textbox is not visible, make it visible
+                if(removeNum.getVisibility() == View.INVISIBLE) {
                     removeNum.setVisibility(View.VISIBLE);
                 }
+
+                //remove event
                 else {
+
+                    //if textbox contains something get the key, check if it's in map
                     if (!removeNum.getText().toString().equals("")) {
                         String[] breakDate = date.getText().toString().split("/");
                         String key = breakDate[0] + breakDate[1] + breakDate[2];
                         ArrayList<calData> removeDate;
                         removeDate = calData.DAY.get(key);
+
+                        //if the item is removable, remove event from array and readd it to map
                         if (Integer.parseInt(removeNum.getText().toString()) - 1 < removeDate.size()) {
                             removeDate.remove(Integer.parseInt(removeNum.getText().toString()) - 1);
                             calData.DAY.remove(key);
                             calData.DAY.put(key, removeDate);
                             System.out.print("Should be removed");
                         }
-                    } else {
+                    }
+
+                    //if textbox has no content
+                    else {
                         Toast.makeText(getApplicationContext(), "Please Enter a Number to be Removed", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -227,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
         //create event button listener
         lookUpDay.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 remove.setVisibility(View.VISIBLE);
                 date.setVisibility(View.VISIBLE);
                 multiPurpose.setText(R.string.loopkUpDay);
