@@ -205,6 +205,9 @@ public class MainActivity extends AppCompatActivity {
                         System.out.print("Should be removed");
                     }
                 }
+                else {
+                    Toast.makeText(getApplicationContext(),"Please Enter a Number to be Removed", Toast.LENGTH_LONG).show();
+                }
             };
         });
 
