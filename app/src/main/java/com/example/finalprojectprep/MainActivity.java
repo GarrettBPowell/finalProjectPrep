@@ -201,21 +201,25 @@ public class MainActivity extends AppCompatActivity {
 
         remove.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(!removeNum.getText().toString().equals("")) {
-                    String[] breakDate = date.getText().toString().split("/");
-                    String key = breakDate[0] + breakDate[1] + breakDate[2];
-                    ArrayList<calData> removeDate;
-                    removeDate = calData.DAY.get(key);
-                    if(Integer.parseInt(removeNum.getText().toString())-1 < removeDate.size())
-                    {
-                        removeDate.remove(Integer.parseInt(removeNum.getText().toString())-1 );
-                        calData.DAY.remove(key);
-                        calData.DAY.put(key, removeDate);
-                        System.out.print("Should be removed");
-                    }
+                if(removeNum.getVisibility() == View.INVISIBLE)
+                {
+                    removeNum.setVisibility(View.VISIBLE);
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"Please Enter a Number to be Removed", Toast.LENGTH_LONG).show();
+                    if (!removeNum.getText().toString().equals("")) {
+                        String[] breakDate = date.getText().toString().split("/");
+                        String key = breakDate[0] + breakDate[1] + breakDate[2];
+                        ArrayList<calData> removeDate;
+                        removeDate = calData.DAY.get(key);
+                        if (Integer.parseInt(removeNum.getText().toString()) - 1 < removeDate.size()) {
+                            removeDate.remove(Integer.parseInt(removeNum.getText().toString()) - 1);
+                            calData.DAY.remove(key);
+                            calData.DAY.put(key, removeDate);
+                            System.out.print("Should be removed");
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Please Enter a Number to be Removed", Toast.LENGTH_LONG).show();
+                    }
                 }
             };
         });
@@ -225,7 +229,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 remove.setVisibility(View.VISIBLE);
-                removeNum.setVisibility(View.VISIBLE);
                 date.setVisibility(View.VISIBLE);
                 multiPurpose.setText(R.string.loopkUpDay);
                 multiPurpose.setVisibility(View.VISIBLE);

@@ -141,24 +141,24 @@
         android:id="@+id/removeNumber"
         android:layout_width="140dp"
         android:layout_height="45dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:autofillHints="@string/removeNum"
         android:ems="10"
         android:hint="@string/removeNum"
         android:inputType="number"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/remove"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
     <Button
         android:id="@+id/remove"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/removeEvent"
         android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/removeNumber"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
     <RelativeLayout
