@@ -3,15 +3,20 @@
 
     <string name="startTime">Start Time</string>
     <string name="endTime">End Time</string>
-    <string name="startDate">Start Date</string>
+    <string name="startDate">Start Date (mm/dd/yy)</string>
     <string name="content">Event Description</string>
+    <string name="removeNum">Remove Number</string>
 
     <string name="addEvent">Add Event</string>
     <string name="createEvent">Create Event</string>
-    <string name="removeEvent">Remove Event</string>
+    <string name="removeEvent">Remove</string>
     <string name="loopkUpDay">Look Up Day</string>
-    <string name="title_displayday_list">Items</string>
-    <string name="title_displayday_detail">displayDay Detail</string>
+
 
     <string name="back">Back</string>
+        <string-array name="amPm">
+            <item>am</item>
+            <item>pm</item>
+        </string-array>
+
 </resources>

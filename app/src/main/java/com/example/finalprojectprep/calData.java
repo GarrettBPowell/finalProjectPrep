@@ -14,7 +14,7 @@ public class calData
     private String content;
 
     public static final HashMap<String, ArrayList<calData>> DAY = new HashMap();
-    public static final ArrayList<calData> EVENTS = new ArrayList<>();
+
 
     calData(String m, String d, String y, String ts, String te, String con)
     {

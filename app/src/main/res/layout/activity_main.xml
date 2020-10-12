@@ -29,7 +29,7 @@
 
     <EditText
         android:id="@+id/editTextTime"
-        android:layout_width="152dp"
+        android:layout_width="100dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
@@ -74,7 +74,7 @@
     <Button
         android:id="@+id/backToNormalView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/createEvent"
@@ -83,42 +83,20 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
     <Button
-        android:id="@+id/removeEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/removeEvent"
-        app:layout_constraintStart_toEndOf="@+id/addEvent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
-    <Button
         android:id="@+id/lookUpDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/loopkUpDay"
-        app:layout_constraintStart_toEndOf="@+id/removeEvent"
+        app:layout_constraintStart_toEndOf="@+id/addEvent"
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
-    <EditText
-        android:id="@+id/editTextTime2"
-        android:layout_width="152dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:autofillHints="@string/endTime"
-        android:ems="10"
-        android:hint="@string/endTime"
-        android:inputType="time"
-        android:visibility="invisible"
-        app:layout_constraintStart_toEndOf="@+id/editTextTime"
-        app:layout_constraintTop_toBottomOf="@+id/removeEvent" />
 
     <Button
         android:id="@+id/back"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
         android:text="@string/back"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/editTextTextMultiLine"
@@ -128,20 +106,56 @@
         android:id="@+id/relative"
         android:layout_width="340dp"
         android:layout_height="500dp"
-        android:layout_marginBottom="1dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/calendarView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible" />
+
     </RelativeLayout>
+
+    <EditText
+        android:id="@+id/editTextTime2"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="@string/endTime"
+        android:ems="10"
+        android:hint="@string/endTime"
+        android:inputType="time"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/editTextTime"
+        app:layout_constraintTop_toBottomOf="@+id/lookUpDay" />
+
+    <EditText
+        android:id="@+id/removeNumber"
+        android:layout_width="140dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints="@string/removeNum"
+        android:ems="10"
+        android:hint="@string/removeNum"
+        android:inputType="number"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+    <Button
+        android:id="@+id/remove"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/removeEvent"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/removeNumber"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
